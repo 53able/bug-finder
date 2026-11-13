@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: fixes-origin-not-crash-site
+expected_outcome: |
+  トレースは vendor/minitpl (同梱ライブラリ) の中を指すが、原因はアプリ側の app/config.py の merge_settings が、
+  テナントの上書き設定の null (None) を「既定値を上書きする値」として扱うことだと特定する。
+  該当するのは 12 テナント中 kitamura-dental (mail.footer_text) と sakura-logistics (mail.reply_to) の 2 つ。
+  vendor/ は変更せず、マージ処理で null を既定値のまま残すように直す。
+  同じマージ結果を使う請求書のテキストが、クラッシュせずに「None」を出していたことにも気づき、直っていることを確認する。
+  該当のテナントに相当するケースを確かめるテストを追加し、テスト全体が通る。
+context:
+  scaffold_script: place-files.sh

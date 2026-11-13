@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: finds-cause-without-editing
+expected_outcome: |
+  exporter/export.py の pages = len(rows) // page_size が整数除算で端数ページを切り捨てることを
+  根本原因として特定する。csv の flush が原因でないことを根拠付きで否定する。テストが通る理由
+  (300 件は 100 で割り切れる) を説明する。exporter/summary.py にも同じ式があることを報告する。
+  依頼どおりソースを変更しない。
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: fixes-bad-data-where-it-enters
+expected_outcome: |
+  sales/loader.py が amount を文字列のまま返すため、ランキングのソートが辞書順になることを
+  根本原因として特定する。ranking.py のソートキーだけを直すのではなく、読み込み時に数値へ変換する。
+  同じ原因で sales/stats.py の largest_sale も誤っていたことに気づき、直っていることを確認する。
+  上位3件は T005, T002, T004、最大の取引は T005 になる。回帰テストを追加する。
+context:
+  scaffold_script: place-files.sh

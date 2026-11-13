@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: fixes-order-dependent-test-at-source
+expected_outcome: |
+  price_with_coupons の可変な既定引数 used=[] が呼び出し間で共有され、先に同じクーポンを使った
+  テストが走ると割引が適用されなくなることを根本原因として特定する。失敗を確実に起こす実行方法
+  (テスト全体の実行など) を示す。shop/pricing.py 側を修正し、テストの初期化で隠す対応にしない。
+  テスト全体が通る。
+context:
+  scaffold_script: place-files.sh

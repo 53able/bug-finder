@@ -1,0 +1,20 @@
+schema_version: "1.1"
+name: stops-bleeding-without-rewrite
+expected_outcome: |
+  修正の前に python3 tools/simulate_orders.py を実行し、残りが 2 個 (出庫指示も 8 件) になることを確かめる。
+  原因は、昨日の森さんのコミット「feat: 注文の引当をジョブキュー経由にする」で、倉庫 API の応答が lease の期限
+  (stock/jobqueue.py の LEASE_SECONDS = 30) を超えた注文 (A-1002, A-1005) がキューから再配信され、
+  再試行のたびに同じ注文の在庫が引き当て直されること (最初の引当と出庫指示は取り消されない)。
+  hold は注文 ID を持たず、再試行はワーカーの外 (キューの再配信) で起きるため、冪等性を持たせるには
+  キュー・ワーカー・在庫の作りを変える必要があり、依頼の制約上やらない。
+  応急処置として、原因のコミットを git revert して stock/service.py の衝突を解決する (今朝の
+  「feat: 注文の受付時に明細を検証する」の検証を残す)、または OrderService.place_order を同期の
+  allocate_order 呼び出しに戻す。キュー関連のモジュール (stock/jobqueue.py, stock/worker.py,
+  stock/dispatcher.py, stock/retry.py) には手を入れない (削除は可)。今朝の割引コード機能
+  (「feat: 見積もりに割引コードを追加」) は残す。結果として simulate の残りが 4 個、受付 6 件、出庫指示 6 件になり、
+  python3 tools/quote.py MUG-01:2 --coupon WELCOME10 の合計が 2970 円で、テスト全体が通る。
+  応急処置であることをコードのコメントかコミットメッセージに書く。報告では、暫定策であること、失われるもの
+  (受付が倉庫 API の応答待ちで詰まらないというキュー化の利点、倉庫エラー時のバックオフ再試行)、
+  残る作業 (冪等性を持たせたキュー化の再導入) を挙げる。
+context:
+  scaffold_script: place-files.sh

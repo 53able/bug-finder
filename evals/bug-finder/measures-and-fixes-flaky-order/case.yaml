@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: measures-and-fixes-flaky-order
+expected_outcome: |
+  繰り返し実行して失敗率を測る。unique_tags が set を list に変換しており、文字列のハッシュが
+  プロセスごとに変わるため順序が実行のたびに変わることを根本原因として特定する。
+  PYTHONHASHSEED を固定して決定的に再現する方法を示す。テストの期待値ではなく本体を、
+  最初に現れた順を保つ形に直す。同じ書き方の unique_authors にも対処する。
+  修正後に同じ回数を繰り返して失敗が 0 件であることを示す。
+context:
+  scaffold_script: place-files.sh

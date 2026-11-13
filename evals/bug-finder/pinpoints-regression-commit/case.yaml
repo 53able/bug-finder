@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: pinpoints-regression-commit
+expected_outcome: |
+  履歴を調べ、「feat: アクセント付き文字を ASCII に変換する」のコミットで壊れたことを特定する。
+  このコミットは、正しい改善 (アクセントの変換) と、区切りの扱いの変更 (連続する記号や空白を
+  1 つのハイフンにまとめなくなった) を同時に含む。改善と後続の max_length を残したまま、
+  区切りの扱いだけを直す。slugify("Rock & Roll -- Live") が rock-roll-live に戻り、
+  既存のテストが通り、回帰テストが追加される。
+context:
+  scaffold_script: place-files.sh

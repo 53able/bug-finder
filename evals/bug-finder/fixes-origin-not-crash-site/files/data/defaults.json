@@ -1,0 +1,16 @@
+{
+  "locale": "ja_JP",
+  "period": "2025-10",
+  "mail": {
+    "sender_name": "請求サポート",
+    "greeting": "いつもご利用ありがとうございます。",
+    "footer_text": "本メールは自動送信です。心当たりがない場合は破棄してください。",
+    "reply_to": "billing-support@example.com"
+  },
+  "billing": {
+    "currency": "円",
+    "tax_rate": 0.1,
+    "due_days": 30,
+    "note": "お支払い期限までにお振込みください。"
+  }
+}

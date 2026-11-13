@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: regenerates-stale-artifact
+expected_outcome: |
+  schema/http.json の既定値は 30 に直っているが、実行時に import される app/_generated/http.py が
+  生成し直されておらず 10 のまま、というのが原因と特定する。生成物を手で編集して値だけ直すことはしない。
+  ただし生成物には、ソース (schema/http.json) に無い手入れが 1 か所ある (base_url の末尾スラッシュを
+  落とす処理)。生成スクリプトを実行する前に、生成物と生成スクリプトの出力の差を確かめてこれに気づき、
+  schema/http.json の base_url に normalize: strip_trailing_slash を足してソース側へ移してから生成し直す。
+  結果として、http.timeout_seconds が 30 で動き、app/_generated は tools/generate.py の出力と一致し、
+  末尾スラッシュ付きの base_url でも URL が二重にならず、テスト全体が通る (既定値 10 を期待していた
+  tests/test_config.py の箇所は 30 に直す)。報告では、手入れの存在とソース側へ移したこと、
+  再発防止 (生成物が最新かを確かめるテストや手順) の追加または提案に触れる。
+context:
+  scaffold_script: place-files.sh

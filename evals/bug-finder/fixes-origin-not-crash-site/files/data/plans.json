@@ -1,0 +1,5 @@
+{
+  "starter": {"label": "スターター", "monthly": 4800, "included_seats": 3, "per_seat": 0},
+  "standard": {"label": "スタンダード", "monthly": 9800, "included_seats": 5, "per_seat": 900},
+  "premium": {"label": "プレミアム", "monthly": 24800, "included_seats": 20, "per_seat": 700}
+}

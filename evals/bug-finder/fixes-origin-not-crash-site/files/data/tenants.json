@@ -1,0 +1,99 @@
+[
+  {
+    "id": "hoshino-bakery",
+    "name": "ほしの製パン",
+    "plan": "starter",
+    "seats": 3,
+    "contact_email": "office@hoshino-bakery.example"
+  },
+  {
+    "id": "minato-clinic",
+    "name": "みなとクリニック",
+    "plan": "standard",
+    "seats": 8,
+    "contact_email": "admin@minato-clinic.example",
+    "overrides": {"mail": {"greeting": "平素よりお世話になっております。"}}
+  },
+  {
+    "id": "kitamura-dental",
+    "name": "北村デンタル",
+    "plan": "standard",
+    "seats": 6,
+    "contact_email": "kitamura@kitamura-dental.example",
+    "overrides": {
+      "mail": {"footer_text": null, "sender_name": "請求サポート 北村担当"}
+    }
+  },
+  {
+    "id": "aoba-school",
+    "name": "青葉学習塾",
+    "plan": "premium",
+    "seats": 25,
+    "contact_email": "keiri@aoba-school.example",
+    "overrides": {"billing": {"due_days": 14}}
+  },
+  {
+    "id": "tsukuda-farm",
+    "name": "佃農園",
+    "plan": "starter",
+    "seats": 2,
+    "contact_email": "info@tsukuda-farm.example"
+  },
+  {
+    "id": "yamashiro-print",
+    "name": "山城印刷",
+    "plan": "standard",
+    "seats": 12,
+    "contact_email": "soumu@yamashiro-print.example",
+    "overrides": {"billing": {"note": "お振込み手数料はご負担ください。"}}
+  },
+  {
+    "id": "sakura-logistics",
+    "name": "さくら物流",
+    "plan": "premium",
+    "seats": 40,
+    "contact_email": "account@sakura-logistics.example",
+    "overrides": {"mail": {"reply_to": null}, "billing": {"due_days": 45}}
+  },
+  {
+    "id": "nagomi-cafe",
+    "name": "なごみ珈琲",
+    "plan": "starter",
+    "seats": 3,
+    "contact_email": "owner@nagomi-cafe.example"
+  },
+  {
+    "id": "fuji-legal",
+    "name": "富士法務事務所",
+    "plan": "standard",
+    "seats": 5,
+    "contact_email": "desk@fuji-legal.example",
+    "overrides": {"mail": {"reply_to": "legal-desk@fuji-legal.example"}}
+  },
+  {
+    "id": "izumi-hotel",
+    "name": "泉ホテル",
+    "plan": "premium",
+    "seats": 22,
+    "contact_email": "finance@izumi-hotel.example",
+    "overrides": {
+      "mail": {"footer_text": "ご不明な点は担当までご連絡ください。"},
+      "billing": {"due_days": 45}
+    }
+  },
+  {
+    "id": "kaede-garage",
+    "name": "楓自動車",
+    "plan": "standard",
+    "seats": 7,
+    "contact_email": "mail@kaede-garage.example"
+  },
+  {
+    "id": "daichi-seed",
+    "name": "大地種苗",
+    "plan": "starter",
+    "seats": 3,
+    "contact_email": "keiri@daichi-seed.example",
+    "overrides": {"mail": {"sender_name": "大地種苗 経理"}}
+  }
+]
